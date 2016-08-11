@@ -14,7 +14,7 @@ db = client['bookshelf']
 sc = db['spinetmp']
 
 # foreach document, get isbn and img link
-imgs = sc.find({'isbn': {'$exists': True}})
+imgs = sc.find({'isbn': {'$exists': True, '$ne': ''}})
 for img in imgs:
     try:
         filename = img['isbn'] + '-' + img['url'].split('/')[-1]
