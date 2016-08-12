@@ -7,11 +7,17 @@
 # Date: 11/Aug/2016
 # Produced By BR
 from pymongo import MongoClient
+from qiniu import Auth
 import unirest
 
 client = MongoClient('mongodb://127.0.0.1:27017/bookshelf')
 db = client['bookshelf']
 sc = db['spinetmp']
+
+access_key = 'AK'
+secret_key = 'SK'
+q = Auth(access_key, secret_key)
+# private_url = q.private_download_url(base_url, expires=3600)
 
 # foreach document, get isbn and img link
 imgs = sc.find({'isbn': {'$exists': True, '$ne': ''}}, no_cursor_timeout = True)
@@ -19,7 +25,7 @@ for img in imgs:
     try:
         filename = img['isbn'] + '-' + img['url'].split('/')[-1]
         unirest.timeout(20)
-        response = unirest.get(img['url'])
+        response = unirest.get(q.private_download_url(img['url'], expires=3600))
         with open('../data/img/' + filename, 'w') as F:
             F.write(response.body)
 
