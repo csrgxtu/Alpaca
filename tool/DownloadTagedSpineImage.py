@@ -9,12 +9,12 @@
 from pymongo import MongoClient
 import unirest
 
-client = MongoClient('mongodb://linyy:rioreader@192.168.200.22:27017/bookshelf')
+client = MongoClient('mongodb://127.0.0.1:27017/bookshelf')
 db = client['bookshelf']
 sc = db['spinetmp']
 
 # foreach document, get isbn and img link
-imgs = sc.find({'isbn': {'$exists': True, '$ne': ''}})
+imgs = sc.find({'isbn': {'$exists': True, '$ne': ''}}, no_cursor_timeout = True)
 for img in imgs:
     try:
         filename = img['isbn'] + '-' + img['url'].split('/')[-1]
