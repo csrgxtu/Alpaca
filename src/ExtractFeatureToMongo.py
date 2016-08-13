@@ -34,6 +34,11 @@ for img in Images:
 
     FeatureMat.append(tmp)
 
+# to pickle file
+output = open('../data/feature.pkl', 'wb')
+pickle.dump(FeatureMat, output)
+output.close()
+
 for f in FeatureMat:
     data = {
         "isbn": f[0],
