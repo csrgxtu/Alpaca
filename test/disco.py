@@ -10,7 +10,7 @@ def reduce(iter, params):
         yield word, sum(counts)
 
 if __name__ == '__main__':
-    job = Job().run(input=["http://discoproject.org/media/text/chekhov.txt"],
+    job = Job().run(input=["../data/chekhov.txt"],
                     map=map,
                     reduce=reduce)
     for word, count in result_iterator(job.wait(show=True)):
