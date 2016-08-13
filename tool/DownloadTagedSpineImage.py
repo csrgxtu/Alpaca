@@ -10,12 +10,12 @@ from pymongo import MongoClient
 from qiniu import Auth
 import unirest
 
-client = MongoClient('mongodb://127.0.0.1:27017/bookshelf')
+client = MongoClient('mongodb://192.168.200.22:27017/bookshelf')
 db = client['bookshelf']
 sc = db['spinetmp']
 
-access_key = 'AK'
-secret_key = 'SK'
+access_key = ''
+secret_key = ''
 q = Auth(access_key, secret_key)
 # private_url = q.private_download_url(base_url, expires=3600)
 
