@@ -5,6 +5,8 @@ from ImgFeatureExtractor import ImgFeatureExtractor
 
 import pyocr
 import pyocr.builders
+import pytesseract
+from PIL import Image
 
 app = Flask(__name__)
 
@@ -25,13 +27,19 @@ def status():
 @app.route("/ocr")
 def ocr():
     tools = pyocr.get_available_tools()
-    if len(tools) == 0:
-        print("No OCR tool found")
-        return 'o_o'
-
     tool = tools[0]
+    print("Will use tool '%s'" % (tool.get_name()))
+
     langs = tool.get_available_languages()
-    print langs
+    lang = langs[1]
+
+    # ife = ImgFeatureExtractor('/tmp/9781111479022-1452074892070_spine.jpg')
+    txt = tool.image_to_string(
+        Image.open('/tmp/9781111479022-1452074892070_spine.jpg'),
+        lang=lang,
+        builder=pyocr.builders.TextBuilder()
+    )
+    print txt
 
     return 'ok'
 
