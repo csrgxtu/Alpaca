@@ -1,5 +1,4 @@
 from flask import Flask, jsonify, request
-# import pickle
 import unirest
 import json
 from ImgFeatureExtractor import ImgFeatureExtractor
@@ -10,9 +9,6 @@ app = Flask(__name__)
 Slaves = [
     'http://localhost:9101/compute'
 ]
-
-# only for test
-# FeatureMat = pickle.load(open('./FeatureMat.pkl', 'rb'))
 
 @app.route("/")
 def status():
