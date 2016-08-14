@@ -1,8 +1,19 @@
-from socketIO_client import SocketIO, LoggingNamespace
+from flask import Flask, jsonify
+app = Flask(__name__)
 
-def on_bbb_response(*args):
-    print('on_bbb_response', args)
+@app.route("/")
+def status():
+    res = {
+        'data': '^_^'
+    }
+    return jsonify(res)
 
-with SocketIO('localhost', 9100) as socketIO:
-    socketIO.emit('message', {'xxx': 'yyy'}, on_bbb_response)
-    socketIO.wait_for_callbacks(seconds=1)
+@app.route("/compute")
+def compute():
+    res = {
+        'data': []
+    }
+    return jsonify(res)
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=9101)
