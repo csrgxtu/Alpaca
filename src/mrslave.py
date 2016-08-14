@@ -2,6 +2,9 @@ from flask import Flask, jsonify
 import pickle
 app = Flask(__name__)
 
+# load the pickle data into mem first, and make it global
+FeatureMat = pickle.load(open('./FeatureMat.pkl', 'rb'))
+
 @app.route("/")
 def status():
     res = {
@@ -15,6 +18,8 @@ def compute():
     res = {
         'data': []
     }
+    res['data'] = [x[0] for x in FeatureMat]
+
     return jsonify(res)
 
 if __name__ == "__main__":
