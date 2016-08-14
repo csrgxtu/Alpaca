@@ -3,6 +3,9 @@ import unirest
 import json
 from ImgFeatureExtractor import ImgFeatureExtractor
 
+import pyocr
+import pyocr.builders
+
 app = Flask(__name__)
 
 # slaves list here
@@ -18,6 +21,19 @@ def status():
         'msg': 'mrmaster'
     }
     return jsonify(res)
+
+@app.route("/ocr")
+def ocr():
+    tools = pyocr.get_available_tools()
+    if len(tools) == 0:
+        print("No OCR tool found")
+        return 'o_o'
+
+    tool = tools[0]
+    langs = tool.get_available_languages()
+    print langs
+
+    return 'ok'
 
 @app.route("/mcompute", methods=['PUT'])
 def mcompute():
