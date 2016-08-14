@@ -35,14 +35,18 @@ for img in Images:
     FeatureMat.append(tmp)
 
 # to pickle file
-output = open('../data/feature.pkl', 'wb')
-pickle.dump(FeatureMat, output)
-output.close()
+# output = open('../data/feature.pkl', 'wb')
+# pickle.dump(FeatureMat, output)
+# output.close()
+with open('../data/feature.csv', 'w') as F:
+    for row in FeatureMat:
+        data = row[1] + ',' + row[0] + row[2] + '\n'
+        F.write(data)
 
-for f in FeatureMat:
-    data = {
-        "isbn": f[0],
-        "filename": f[1],
-        "des": f[2]
-    }
-    print fc.insert_one(data).inserted_id
+# for f in FeatureMat:
+#     data = {
+#         "isbn": f[0],
+#         "filename": f[1],
+#         "des": f[2]
+#     }
+#     print fc.insert_one(data).inserted_id
