@@ -30,7 +30,8 @@ for img in Images:
     tmp.append(img.split('-')[0].split('/')[-1]) #isbn
     tmp.append(img) # filename
     # tmp.append(pickle.dumps(kp)) #keypoints
-    tmp.append(pickle.dumps(des)) #descriptions
+    # tmp.append(pickle.dumps(des)) #descriptions
+    tmp.append(des.tostring())
 
     FeatureMat.append(tmp)
 
@@ -40,7 +41,8 @@ for img in Images:
 # output.close()
 with open('../data/feature.csv', 'w') as F:
     for row in FeatureMat:
-        data = row[1] + ',' + row[0] + row[2] + '\n'
+        # filename, isbn, feature
+        data = row[1] + ',' + row[0] + ',' + row[2] + '\n'
         F.write(data)
 
 # for f in FeatureMat:
