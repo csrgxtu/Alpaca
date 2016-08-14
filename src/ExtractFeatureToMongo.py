@@ -32,12 +32,12 @@ for img in Images:
     # tmp.append(pickle.dumps(kp)) #keypoints
     # tmp.append(pickle.dump(des)) #descriptions
     tmp.append(des)
-    
+
     FeatureMat.append(tmp)
 
 # to pickle file
-output = open('../data/feature.pkl', 'wb')
-pickle.dump(FeatureMat, output)
+output = open('../data/feature1.pkl', 'wb')
+pickle.dump(FeatureMat[0:17000], output)
 output.close()
 # with open('../data/feature.csv', 'w') as F:
 #     for row in FeatureMat:

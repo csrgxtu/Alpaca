@@ -37,6 +37,8 @@ def compute():
             Distance.append(m[0].distance)
         res['data'].append([row[1], np.average(Distance)])
 
+    # only concerns first 20 matches
+    res['data'] = res['data'][0:20]
     res['data'].sort(key=lambda x: x[1])
     return jsonify(res)
 

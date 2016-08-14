@@ -38,6 +38,7 @@ def mcompute():
         response = unirest.put(url=slave, headers=header, params=data)
         res['data'].extend(response.body['data'])
 
+    res['data'].sort(key=lambda x: x[1])
     return jsonify(res)
 
 if __name__ == "__main__":
