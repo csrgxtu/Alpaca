@@ -4,7 +4,8 @@ app = Flask(__name__)
 @app.route("/")
 def status():
     res = {
-        'data': '^_^'
+        'status': '^_^',
+        'msg': 'mrslave'
     }
     return jsonify(res)
 
