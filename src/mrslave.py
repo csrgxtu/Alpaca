@@ -2,7 +2,8 @@ from flask import Flask, jsonify, request
 import pickle
 import numpy as np
 import cv2
-
+import json
+import ast
 app = Flask(__name__)
 
 # load the pickle data into mem first, and make it global
@@ -19,7 +20,7 @@ def status():
 
 @app.route("/compute", methods=['PUT'])
 def compute():
-    print request.data
+    data = np.array(json.loads(request.data), dtype=np.float32)
     res = {
         'data': []
     }
@@ -28,7 +29,7 @@ def compute():
         if row[2] is None:
             continue
 
-        data = FeatureMat[1][2] # temp
+        # data = FeatureMat[1][2] # temp
         matches = BF.knnMatch(data, row[2], k=2)
         matches = sorted(matches, key = lambda x:x[0].distance)
         Distance = []

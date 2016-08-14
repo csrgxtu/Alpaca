@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 import pickle
 import unirest
+import json
 app = Flask(__name__)
 
 # only for test
@@ -24,8 +25,9 @@ def mcompute():
 
     url = 'http://localhost:9101/compute'
     data = FeatureMat[1][2]
-    headers={'Content-Type': 'plain/text'}
-    response = unirest.put(url=url, data=data, headers=headers)
+    data = json.dumps(data.tolist())
+    header = {"Content-Type": "application/json"}
+    response = unirest.put(url=url, headers=header, params=data)
     res['data'].extend(response.body['data'])
 
     return jsonify(res)
