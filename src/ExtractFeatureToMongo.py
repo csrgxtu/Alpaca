@@ -30,23 +30,19 @@ for img in Images:
     tmp.append(img.split('-')[0].split('/')[-1]) #isbn
     tmp.append(img) # filename
     # tmp.append(pickle.dumps(kp)) #keypoints
-    # tmp.append(pickle.dumps(des)) #descriptions
-    if des is None:
-        tmp.append('')
-    else:
-        tmp.append(des.tostring())
-
+    # tmp.append(pickle.dump(des)) #descriptions
+    tmp.append(des)
     FeatureMat.append(tmp)
 
 # to pickle file
-# output = open('../data/feature.pkl', 'wb')
-# pickle.dump(FeatureMat, output)
-# output.close()
-with open('../data/feature.csv', 'w') as F:
-    for row in FeatureMat:
-        # filename, isbn, feature
-        data = row[1] + ',' + row[0] + ',' + row[2] + '\n'
-        F.write(data)
+output = open('../data/feature.pkl', 'wb')
+pickle.dump(FeatureMat, output)
+output.close()
+# with open('../data/feature.csv', 'w') as F:
+#     for row in FeatureMat:
+#         # filename, isbn, feature
+#         data = row[1] + ',' + row[0] + ',' + row[2] + '\n'
+#         F.write(data)
 
 # for f in FeatureMat:
 #     data = {
