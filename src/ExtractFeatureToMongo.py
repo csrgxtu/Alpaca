@@ -36,8 +36,8 @@ for img in Images:
     FeatureMat.append(tmp)
 
 # to pickle file
-output = open('../data/feature1.pkl', 'wb')
-pickle.dump(FeatureMat[0:17000], output)
+output = open('../data/feature2.pkl', 'wb')
+pickle.dump(FeatureMat[17000:], output)
 output.close()
 # with open('../data/feature.csv', 'w') as F:
 #     for row in FeatureMat:

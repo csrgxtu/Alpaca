@@ -7,7 +7,8 @@ app = Flask(__name__)
 
 # slaves list here
 Slaves = [
-    'http://localhost:9101/compute'
+    'http://192.168.100.2:9101/compute',
+    'http://192.168.100.3:9102/compute'
 ]
 
 @app.route("/")
