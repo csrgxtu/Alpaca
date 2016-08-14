@@ -31,7 +31,10 @@ for img in Images:
     tmp.append(img) # filename
     # tmp.append(pickle.dumps(kp)) #keypoints
     # tmp.append(pickle.dumps(des)) #descriptions
-    tmp.append(des.tostring())
+    if des is None:
+        tmp.append('')
+    else:
+        tmp.append(des.tostring())
 
     FeatureMat.append(tmp)
 
