@@ -4,8 +4,6 @@ from mrjob.protocol import PickleProtocol, TextValueProtocol
 
 class ImgSimMRJOB(MRJob):
     INPUT_PROTOCOL = PickleProtocol
-    INTERNAL_PROTOCOL = TextValueProtocol
-    OUTPUT_PROTOCOL = TextValueProtocol
 
     def mapper(self, _, line):
         yield 'archer', 1

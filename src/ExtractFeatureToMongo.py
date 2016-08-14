@@ -32,6 +32,7 @@ for img in Images:
     # tmp.append(pickle.dumps(kp)) #keypoints
     # tmp.append(pickle.dump(des)) #descriptions
     tmp.append(des)
+    
     FeatureMat.append(tmp)
 
 # to pickle file
